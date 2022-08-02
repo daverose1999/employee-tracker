@@ -13,6 +13,11 @@ import setting from '../../../assets/setting.svg'
 import help from '../../../assets/help.svg'
 import logout from '../../../assets/logout.svg'
 
+import employees from '../../../assets/employee.svg'
+import working from '../../../assets/working.svg'
+import hourglass from '../../../assets/hourglass.svg'
+import calendar from '../../../assets/calendar.svg'
+
 const Container = styled.div
 `
     position: relative;
@@ -26,7 +31,7 @@ const TopBar = styled.div
     width: 100%;
     display: flex; 
     justify-content: space-between; 
-    padding: 20px 50px 20px 35px;
+    padding: 20px 20px 20px 35px;
     border-bottom: 1px solid #f7f7f7;
     background-color: #fff;
 `
@@ -54,26 +59,28 @@ const Search = styled.div
     position: relative;
     display: flex;
     width: 465px;
-    height: 40px;
+    height: 35px;
     margin: 0 0 0 50px;
+
 
     input{
         width: 100%;
         height: 100%;
         background-color: #f4f7f9;
         padding: 0px 50px; 
+        font-size: 12px;
         outline: none;
         border: none;
     }
 
     button{
+        font-size: 12px;
         width: 100px;
         height: 100%;
         outline: none;
         border: none;
         background-color: #438ffe;
         color: #fff;
-        font-size: 14px;
     }
 
     img{
@@ -90,8 +97,8 @@ const Profile = styled.div
     align-items: center;
 
     .picture{
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
         object-fit: cover;
         border-radius: 50%;
     }
@@ -105,7 +112,7 @@ const SideBar = styled.div
     flex-direction: column; 
     height: calc(100vh - 86px);
     background-color: #fff;
-    padding: 40px;
+    padding: 30px;
     width: fit-content;
 `
 
@@ -119,17 +126,26 @@ const Column = styled.div
 const View = styled.div
 `
     display: flex;
+    width: 100%;
 `
 
 const Cards = styled.div
 `
+    display: flex;
+    justify-content: space-between;
 `
 const Card = styled.div
 `
+    .top{
+        img{
+            width: 24px;
+        }
+    }
 `
 const Main = styled.div
 `
     padding: 40px;
+    width: 100%;
 
     h1{
         font-weight: 400;
@@ -175,17 +191,54 @@ const AdminDashboard = () => {
                 <Main>
                     <h1>Dashboard</h1>
                     <Cards>
-                        <Card>Total Employees
-                            11
-                            Add Employee
+                        <Card>
+                            <div className='top'>
+                                <img src={employees} alt=''/>
+                            </div>
+                            <div className='middle'>
+                                Total Employees
+                                <p>11</p>
+                            </div>
+                            <div className='bottom'>+ Add Employee</div>
                         </Card>
-                        <Card>Employees Working Today
-                            12
-                        Remaining: 1
+                        <Card>
+                             <div className='top'>
+                                <img src={working} alt=''/>
+                            </div>
+                            <div className='middle'>
+                                Employees Working Today
+                                <p>12</p>
+                            </div>
+                            <div className='bottom'>
+                                <p>Remaining: 1</p>
+                                <p></p>
+                            </div>
                         </Card> 
-                        <Card>Employees Clocked Out
-                        10</Card> 
-                        <Card>Sick days Request</Card> 
+                        <Card>
+                              <div className='top'>
+                                <img src={hourglass} alt=''/>
+                            </div>
+                            <div className='middle'>
+                               Employees Clocked Out
+                                <p>10</p>
+                            </div>
+                            <div className='bottom'>
+                                <p>Remaining: 1</p>
+                                <p></p>
+                            </div>
+                        </Card> 
+                        <Card>
+                            <div className='top'>
+                                <img src={calendar} alt=''/>
+                            </div>
+                            <div className='middle'>
+                              Days Off Request
+                                <p>10</p>
+                            </div>
+                            <div className='bottom'>
+                                <p>Remaining: 1</p>
+                                <p></p>
+                            </div></Card> 
                     </Cards>
                 </Main>
            </View>
