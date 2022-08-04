@@ -131,16 +131,61 @@ const View = styled.div
 
 const Cards = styled.div
 `
-    display: flex;
-    justify-content: space-between;
+   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
 `
 const Card = styled.div
 `
+    padding: 20px;
+    background-color: #fff;
+
     .top{
+        padding: 10px;
+        width: fit-content;
+
         img{
             width: 24px;
         }
     }
+
+    .middle{
+        margin: 15px 0;
+        h2{
+            font-size: 16px;
+            font-weight: 300;
+            color: #b3b8c5;
+        }
+
+        p{
+            font-size: 28px;
+            color: #28215b;
+        }
+        
+    }
+
+    .bottom{
+        border-top: 1px solid #dcdcdc;
+    }
+
+     .color1{
+            background-color: #559afe;
+        }
+
+        .color2{
+            background-color: #f4f9f4;
+        }
+
+        .color3{
+            background-color: #edf4ff;
+        } 
+        
+        .color4{
+            background-color: #f3f9f9;
+        }
+      
+
+
 `
 const Main = styled.div
 `
@@ -148,7 +193,10 @@ const Main = styled.div
     width: 100%;
 
     h1{
-        font-weight: 400;
+        font-weight: 600;
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #28215b;
     }
 `
 
@@ -192,53 +240,51 @@ const AdminDashboard = () => {
                     <h1>Dashboard</h1>
                     <Cards>
                         <Card>
-                            <div className='top'>
-                                <img src={employees} alt=''/>
+                            <div className='top color1'>
+                                <img  src={employees} alt=''/>
                             </div>
                             <div className='middle'>
-                                Total Employees
+                                <h2>Total Employees</h2>
                                 <p>11</p>
                             </div>
                             <div className='bottom'>+ Add Employee</div>
                         </Card>
                         <Card>
-                             <div className='top'>
+                             <div className='top color2'>
                                 <img src={working} alt=''/>
                             </div>
                             <div className='middle'>
-                                Employees Working Today
+                                <h2>Employees Working Today</h2>
                                 <p>12</p>
                             </div>
                             <div className='bottom'>
                                 <p>Remaining: 1</p>
-                                <p></p>
                             </div>
                         </Card> 
                         <Card>
-                              <div className='top'>
+                              <div className='top color3'>
                                 <img src={hourglass} alt=''/>
                             </div>
                             <div className='middle'>
-                               Employees Clocked Out
+                                <h2>Employees Clocked Out</h2>
                                 <p>10</p>
                             </div>
                             <div className='bottom'>
                                 <p>Remaining: 1</p>
-                                <p></p>
                             </div>
                         </Card> 
                         <Card>
-                            <div className='top'>
+                            <div className='top color4'>
                                 <img src={calendar} alt=''/>
                             </div>
                             <div className='middle'>
-                              Days Off Request
+                                <h2> Days Off Request</h2>
                                 <p>10</p>
                             </div>
                             <div className='bottom'>
                                 <p>Remaining: 1</p>
-                                <p></p>
-                            </div></Card> 
+                            </div>
+                        </Card> 
                     </Cards>
                 </Main>
            </View>
