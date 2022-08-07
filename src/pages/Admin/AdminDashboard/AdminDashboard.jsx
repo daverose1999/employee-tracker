@@ -12,6 +12,7 @@ import report from '../../../assets/report.svg'
 import setting from '../../../assets/setting.svg'
 import help from '../../../assets/help.svg'
 import logout from '../../../assets/logout.svg'
+import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 
 import employees from '../../../assets/employee.svg'
 import working from '../../../assets/working.svg'
@@ -52,6 +53,10 @@ const Flex = styled.div
     display: flex;
     align-items: center;
     gap: 0px 20px;
+
+    img{
+        width: 18px;
+    }
 `
 
 const Search = styled.div
@@ -107,6 +112,7 @@ const Profile = styled.div
 const SideBar = styled.div
 `
     position: sticky;
+    top: 80px;
     display: flex;
     justify-content: space-between;
     flex-direction: column; 
@@ -131,9 +137,9 @@ const View = styled.div
 
 const Cards = styled.div
 `
-   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 25px;
 `
 const Card = styled.div
 `
@@ -166,10 +172,24 @@ const Card = styled.div
 
     .bottom{
         border-top: 1px solid #dcdcdc;
+
+        p{
+            margin-top: 18px;
+            font-size: 14px;
+            color: #b3b8c5;
+        }
+
+        button{
+            background-color: transparent;
+            border: none;
+            margin-top: 18px;
+            color: #428cf8;
+            cursor: pointer;
+        }
     }
 
      .color1{
-            background-color: #559afe;
+            background-color: rgba(254,118,75, 0.1);
         }
 
         .color2{
@@ -200,7 +220,71 @@ const Main = styled.div
     }
 `
 
+const Table = styled.table
+`
+    background-color: #fff;
+    color: #201852;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    width: 100%;
+
+    tr{
+        text-align: left;
+
+    }
+
+    th,
+    td{
+    }
+
+    th{
+        font-weight: 600;
+        padding: 10px 25px;
+    }
+
+    td{
+        background-color: #f5f7f9 ;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 25px;
+
+
+        span{
+            color: #63666A;
+        }
+    }
+
+    .status{
+        color: #438ffe;
+    }
+`
+
+const TableWrapper = styled.div
+`
+    background-color: #fff;
+    padding: 0 20px;
+    margin: 35px 0;
+    width: 60%;
+
+`
+const Graph = styled.div
+`
+    background-color: #fff;
+    padding: 0 20px;
+    margin: 35px 0;
+    width: 60%;
+
+`
+
 const AdminDashboard = () => {
+    const data = [
+        {quarter: 'M', earnings: 13000},
+        {quarter: 'T', earnings: 16500},
+        {quarter: 'W', earnings: 14250},
+        { quarter: 'T', earnings: 19000},
+        {quarter: 'F', earnings: 19000}
+        
+    ];
     return (
       <Container>
             <TopBar>
@@ -241,13 +325,17 @@ const AdminDashboard = () => {
                     <Cards>
                         <Card>
                             <div className='top color1'>
-                                <img  src={employees} alt=''/>
+                                <img src={employees} alt=''/>
                             </div>
                             <div className='middle'>
                                 <h2>Total Employees</h2>
                                 <p>11</p>
                             </div>
-                            <div className='bottom'>+ Add Employee</div>
+                            <div className='bottom'>
+                                <button>
+                                    + Add Employee
+                                </button>
+                            </div>
                         </Card>
                         <Card>
                              <div className='top color2'>
@@ -286,6 +374,63 @@ const AdminDashboard = () => {
                             </div>
                         </Card> 
                     </Cards>
+                    <TableWrapper>
+                        <Table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Employee Name</th>
+                            <th >Status</th>
+                            <th>Work Schedule</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Maria Anders</td>
+                            <td className='status'>Clocked In</td>
+                            <td>Updated: <span>Yesterday</span></td>
+                        </tr>
+                         <tr>
+                            <td>2</td>
+                            <td>Maria Anders</td>
+                            <td className='status'>Clocked Out</td>
+                            <td>Updated: <span>Yesterday</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Maria Anders</td>
+                            <td className='status'>Clocked Out</td>
+                            <td>Updated: <span>Yesterday</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Maria Anders</td>
+                            <td className='status'>Clocked In</td>
+                            <td>Updated: <span>Yesterday</span></td>
+                        </tr>
+                        </Table>
+                    </TableWrapper>
+                    <Graph>
+                        <VictoryChart
+                            // domainPadding will add space to each side of VictoryBar to
+                            // prevent it from overlapping the axis
+                            domainPadding={20}>
+                            <VictoryAxis
+                            // tickValues specifies both the number of ticks and where
+                            // they are placed on the axis
+                            tickValues={[1, 2, 3, 4]}
+                            tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+                            />
+                            <VictoryAxis
+                            dependentAxis
+                            // tickFormat specifies how ticks should be displayed
+                            tickFormat={(x) => (`$${x / 1000}k`)}
+                            />
+                            <VictoryBar
+                            data={data}
+                            x="quarter"
+                            y="earnings"
+                            />
+                        </VictoryChart>
+                    </Graph>
                 </Main>
            </View>
       </Container>
